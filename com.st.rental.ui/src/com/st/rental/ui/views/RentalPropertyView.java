@@ -10,7 +10,6 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.opcoach.training.rental.Rental;
 import com.st.rental.core.RentalCoreActivator;
-import org.eclipse.swt.widgets.Text;
 
 
 public class RentalPropertyView extends ViewPart {
