@@ -28,6 +28,8 @@ public class RentalAgencyView extends ViewPart {
 		tv.setInput(agencyCollection);
 		
 		tv.expandAll();
+		
+		getSite().setSelectionProvider(tv);
 	}
 
 	@Override
