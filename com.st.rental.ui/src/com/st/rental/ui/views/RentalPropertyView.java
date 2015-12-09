@@ -3,6 +3,12 @@ package com.st.rental.ui.views;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DragSource;
+import org.eclipse.swt.dnd.DragSourceAdapter;
+import org.eclipse.swt.dnd.DragSourceEvent;
+import org.eclipse.swt.dnd.TextTransfer;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -73,6 +79,12 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 		labelEndDate.setText("dummy");
 
 		 setRental(RentalCoreActivator.getAgency().getRentals().get(0));
+
+		 // Provide ability to drag and drop label texts to other apps
+		 setLabelAsDragSource(rentedObjectLabel);
+		 setLabelAsDragSource(renterNameLabel);
+		 setLabelAsDragSource(labelStartDate);
+		 setLabelAsDragSource(labelEndDate);
 	}
 
 	@Override
@@ -86,6 +98,21 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 		renterNameLabel.setText(rental.getCustomer().getDisplayName());
 		labelStartDate.setText(rental.getStartDate().toString());
 		labelEndDate.setText(rental.getEndDate().toString());
+	}
+	
+	private void setLabelAsDragSource(Label label) {
+		DragSource source = new DragSource(label, DND.DROP_MOVE);
+		source.setTransfer(new Transfer[] { TextTransfer.getInstance() });
+		
+		source.addDragListener(new DragSourceAdapter() {
+			@Override
+			public void dragSetData(DragSourceEvent event) {
+				if (TextTransfer.getInstance().isSupportedType(event.dataType)) {
+					event.data = label.getText();
+				}
+				super.dragSetData(event);
+			}
+		});
 	}
 
 	@Override
