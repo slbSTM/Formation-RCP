@@ -1,7 +1,11 @@
 package com.st.rental.ui;
 
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -45,6 +49,16 @@ public class RentalUIActivator extends AbstractUIPlugin {
 	 */
 	public static RentalUIActivator getDefault() {
 		return plugin;
+	}
+
+	@Override
+	protected void initializeImageRegistry(ImageRegistry reg) {
+		Bundle b = FrameworkUtil.getBundle(this.getClass());
+		
+		reg.put(RentalUIConstants.IMG_AGENCY, ImageDescriptor.createFromURL(b.getEntry(RentalUIConstants.IMG_AGENCY)));
+		reg.put(RentalUIConstants.IMG_CUSTOMERS, ImageDescriptor.createFromURL(b.getEntry(RentalUIConstants.IMG_CUSTOMERS)));
+		reg.put(RentalUIConstants.IMG_RENTAL_OBJECTS, ImageDescriptor.createFromURL(b.getEntry(RentalUIConstants.IMG_RENTAL_OBJECTS)));
+		reg.put(RentalUIConstants.IMG_RENTALS, ImageDescriptor.createFromURL(b.getEntry(RentalUIConstants.IMG_RENTALS)));
 	}
 
 }
