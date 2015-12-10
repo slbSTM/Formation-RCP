@@ -5,6 +5,9 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
+
+import com.st.rental.ui.Messages;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 
 /**
@@ -27,8 +30,8 @@ public class SampleHandler extends AbstractHandler {
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 		MessageDialog.openInformation(
 				window.getShell(),
-				"Sample",
-				"Hello, Eclipse world");
+				Messages.SampleHandler_0,
+				Messages.SampleHandler_1);
 		return null;
 	}
 }

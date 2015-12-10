@@ -5,20 +5,20 @@
          point="org.eclipse.ui.views">
       <category
             id="com.st.rental.ui.category"
-            name="Rental">
+            name="%category.name">
       </category>
       <view
             category="com.st.rental.ui.category"
             class="com.st.rental.ui.views.RentalPropertyView"
             id="com.st.rental.ui.view.rental.property"
-            name="Rental Property"
+            name="%view.name"
             restorable="true">
       </view>
       <view
             category="com.st.rental.ui.category"
             class="com.st.rental.ui.views.RentalAgencyView"
             id="com.st.rental.ui.view.rental.agency"
-            name="Rental Agency"
+            name="%view.name.0"
             restorable="true">
       </view>
    </extension>
@@ -27,7 +27,7 @@
       <perspective
             class="com.st.rental.ui.perspectives.RentalPerspective"
             id="com.st.rental.ui.perspectives.RentalPerspective"
-            name="Rental">
+            name="%perspective.name">
       </perspective>
    </extension>
    <extension
@@ -35,7 +35,7 @@
       <page
             class="com.st.rental.ui.prefs.RentalColorsPreferencePage"
             id="com.st.rental.ui.preferencePages.colors"
-            name="Rental Colors">
+            name="%page.name">
       </page>
    </extension>
    <extension
@@ -48,7 +48,7 @@
          point="org.eclipse.ui.commands">
       <command
             id="com.st.rental.ui.commands.sample"
-            name="Sample Command">
+            name="%command.name">
       </command>
    </extension>
    <extension
@@ -65,11 +65,11 @@
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
                id="com.st.rental.ui.menus.main.sample"
-               label="Sample">
+               label="%menu.label">
             <command
                   commandId="com.st.rental.ui.commands.sample"
                   style="push"
-                  tooltip="Sample command added in the main menu">
+                  tooltip="%command.tooltip">
             </command>
             <separator
                   name="com.st.rental.ui.separator1">
@@ -85,7 +85,7 @@
             locationURI="menu:org.eclipse.ui.views.ResourceNavigator?after=additions">
          <menu
                id="com.st.rental.ui.menus.navigator.sample"
-               label="Sample">
+               label="%menu.label.0">
             <command
                   commandId="com.st.rental.ui.commands.sample"
                   style="push">
