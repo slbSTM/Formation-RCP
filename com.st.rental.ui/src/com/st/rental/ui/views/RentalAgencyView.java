@@ -3,10 +3,12 @@ package com.st.rental.ui.views;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
@@ -17,7 +19,7 @@ import com.st.rental.ui.RentalUIActivator;
 
 public class RentalAgencyView extends ViewPart implements IPropertyChangeListener {
 
-	private TreeViewer tv;
+	private TreeViewer agencyViewer;
 
 	public RentalAgencyView() {
 		// TODO Auto-generated constructor stub
@@ -26,17 +28,22 @@ public class RentalAgencyView extends ViewPart implements IPropertyChangeListene
 	@Override
 	public void createPartControl(Composite parent) {
 		RentalProvider rentalProvider = new RentalProvider();	
-		tv = new TreeViewer(parent);
+		agencyViewer = new TreeViewer(parent);
 
-		tv.setContentProvider(rentalProvider);
-		tv.setLabelProvider(rentalProvider);
+		agencyViewer.setContentProvider(rentalProvider);
+		agencyViewer.setLabelProvider(rentalProvider);
 		Collection<RentalAgency> agencyCollection = new ArrayList<RentalAgency>();
 		agencyCollection.add(RentalCoreActivator.getAgency());
-		tv.setInput(agencyCollection);
+		agencyViewer.setInput(agencyCollection);
 		
-		tv.expandAll();
+		agencyViewer.expandAll();
 		
-		getSite().setSelectionProvider(tv);
+		getSite().setSelectionProvider(agencyViewer);
+
+		MenuManager menuManager = new MenuManager();
+		Menu menu = menuManager.createContextMenu(agencyViewer.getControl());
+		agencyViewer.getControl().setMenu(menu);
+		getSite().registerContextMenu(menuManager, agencyViewer);
 	}
 
 	@Override
@@ -59,6 +66,6 @@ public class RentalAgencyView extends ViewPart implements IPropertyChangeListene
 
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
-		tv.refresh();
+		agencyViewer.refresh();
 	}
 }

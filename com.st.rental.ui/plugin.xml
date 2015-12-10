@@ -44,5 +44,66 @@
             class="com.st.rental.ui.prefs.RentalColorsPreferenceInitializer">
       </initializer>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="com.st.rental.ui.commands.sample"
+            name="Sample Command">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.st.rental.ui.handlers.SampleHandler"
+            commandId="com.st.rental.ui.commands.sample">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="com.st.rental.ui.menus.main.sample"
+               label="Sample">
+            <command
+                  commandId="com.st.rental.ui.commands.sample"
+                  style="push"
+                  tooltip="Sample command added in the main menu">
+            </command>
+            <separator
+                  name="com.st.rental.ui.separator1">
+            </separator>
+            <command
+                  commandId="com.st.rental.ui.commands.sample"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.views.ResourceNavigator?after=additions">
+         <menu
+               id="com.st.rental.ui.menus.navigator.sample"
+               label="Sample">
+            <command
+                  commandId="com.st.rental.ui.commands.sample"
+                  style="push">
+            </command>
+         </menu>
+         <command
+               commandId="com.st.rental.ui.commands.sample"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:com.st.rental.ui.view.rental.agency?after=additions">
+         <command
+               commandId="com.st.rental.ui.commands.sample"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>
