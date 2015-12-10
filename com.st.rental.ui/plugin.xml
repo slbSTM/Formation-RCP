@@ -21,6 +21,14 @@
             name="%view.name.0"
             restorable="true">
       </view>
+      <view
+            category="com.st.rental.ui.category"
+            class="com.st.rental.ui.views.CustomerView"
+            icon="icons/Customers.png"
+            id="com.st.rental.ui.view.customer"
+            name="Customer"
+            restorable="true">
+      </view>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">
