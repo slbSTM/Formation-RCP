@@ -10,6 +10,7 @@
       <view
             category="com.st.rental.ui.category"
             class="com.st.rental.ui.views.RentalPropertyView"
+            icon="icons/Rentals.png"
             id="com.st.rental.ui.view.rental.property"
             name="%view.name"
             restorable="true">
@@ -17,6 +18,7 @@
       <view
             category="com.st.rental.ui.category"
             class="com.st.rental.ui.views.RentalAgencyView"
+            icon="icons/Agency.png"
             id="com.st.rental.ui.view.rental.agency"
             name="%view.name.0"
             restorable="true">
