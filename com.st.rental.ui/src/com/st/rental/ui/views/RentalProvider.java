@@ -2,6 +2,10 @@ package com.st.rental.ui.views;
 
 import java.util.Collection;
 
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.resource.ColorRegistry;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.resource.StringConverter;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -9,6 +13,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
 
 import com.opcoach.training.rental.Customer;
@@ -115,24 +120,26 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 	@Override
 	public Color getForeground(Object element) {
 		Display display = Display.getCurrent();
+		IPreferenceStore store = RentalUIActivator.getDefault().getPreferenceStore();
+		Color color = null;
 
 		if (element instanceof RentalAgency) {
-			return display.getSystemColor(SWT.COLOR_DARK_GRAY);
+			color = display.getSystemColor(SWT.COLOR_DARK_GRAY);
 		}
 		else if (element instanceof Node) {
-			return ((Node) element).getForeround();
+			color = ((Node) element).getForeround();
 		}
 		else if (element instanceof Customer) {
-			return display.getSystemColor(SWT.COLOR_DARK_BLUE);
+			color = getColor(store.getString(PREF_COLOR_CUSTOMERS));
 		}
 		else if (element instanceof RentalObject) {
-			return display.getSystemColor(SWT.COLOR_DARK_GREEN);
+			color = getColor(store.getString(PREF_COLOR_RENTAL_OBJECTS));
 		}
 		else if (element instanceof Rental) {
-			return display.getSystemColor(SWT.COLOR_DARK_RED);
+			color = getColor(store.getString(PREF_COLOR_RENTALS));
 		}
 
-		return null;
+		return color;
 	}
 
 	@Override
@@ -141,6 +148,16 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		return null;
 	}
 
+	private Color getColor(String rgbKey) {
+		ColorRegistry registry = JFaceResources.getColorRegistry();
+		Color color = registry.get(rgbKey);
+		if (color == null) {
+			registry.put(rgbKey, StringConverter.asRGB(rgbKey));
+			color = registry.get(rgbKey);
+		}
+
+		return color;
+	}
 
 	// Node
 	class Node {
@@ -173,19 +190,20 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 		}
 
 		public Color getForeround() {
-			Display display = Display.getCurrent();
+			IPreferenceStore store = RentalUIActivator.getDefault().getPreferenceStore();
+			Color color = null;
 
 			if (title == NODE_CUSTOMERS) {
-				return display.getSystemColor(SWT.COLOR_DARK_BLUE);
+				color = getColor(store.getString(PREF_COLOR_CUSTOMERS));
 			}
 			else if (title == NODE_RENTAL_OBJECTS) {
-				return display.getSystemColor(SWT.COLOR_DARK_GREEN);
+				color = getColor(store.getString(PREF_COLOR_RENTAL_OBJECTS));
 			}
 			else if (title == NODE_RENTALS) {
-				return display.getSystemColor(SWT.COLOR_DARK_RED);
+				color = getColor(store.getString(PREF_COLOR_RENTALS));
 			}
 
-			return null;
+			return color;
 		}
 
 		public Image getImage() {
