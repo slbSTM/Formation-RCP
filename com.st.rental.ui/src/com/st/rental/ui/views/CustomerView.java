@@ -7,9 +7,11 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
+import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.Rental;
 
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
@@ -45,8 +47,10 @@ public class CustomerView extends ViewPart implements ISelectionListener {
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
 			Object selectedObject = ((IStructuredSelection) selection).getFirstElement();
-			if (selectedObject instanceof Rental)
-				labelCustomer.setText(((Rental)selectedObject).getCustomer().getDisplayName());
+
+			Customer customer = Platform.getAdapterManager().getAdapter(selectedObject, Customer.class);
+			if (customer != null)
+				labelCustomer.setText(customer.getDisplayName());
 		}
 	}
 
