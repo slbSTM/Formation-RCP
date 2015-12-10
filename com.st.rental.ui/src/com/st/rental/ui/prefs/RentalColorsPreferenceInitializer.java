@@ -27,5 +27,4 @@ public class RentalColorsPreferenceInitializer extends AbstractPreferenceInitial
 		store.setDefault(PREF_COLOR_RENTAL_OBJECTS, StringConverter.asString(green));
 		store.setDefault(PREF_COLOR_RENTALS, StringConverter.asString(blue));
 	}
-
 }
