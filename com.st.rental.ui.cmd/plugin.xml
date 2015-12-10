@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="com.st.rental.ui.cmd.expressions.isCustomerSelected">
+         <iterate>
+            <instanceof
+                  value="com.opcoach.training.rental.Customer">
+            </instanceof>
+         </iterate>
+      </definition>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.st.rental.ui.cmd.handlers.CopyCustomerHandler"
+            commandId="org.eclipse.ui.edit.copy">
+         <activeWhen>
+            <reference
+                  definitionId="com.st.rental.ui.cmd.expressions.isCustomerSelected">
+            </reference>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         id="com.st.rental.ui.cmd.menus"
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:com.st.rental.ui.view.rental.agency?after=additions">
+         <command
+               commandId="org.eclipse.ui.edit.copy"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:com.st.rental.ui.view.rental.property?after=additions">
+      </menuContribution>
+   </extension>
+
+</plugin>
