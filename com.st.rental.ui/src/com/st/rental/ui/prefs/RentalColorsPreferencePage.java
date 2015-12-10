@@ -2,11 +2,9 @@ package com.st.rental.ui.prefs;
 
 import org.eclipse.jface.preference.ColorFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-import com.st.rental.core.RentalCoreActivator;
 import com.st.rental.ui.RentalUIActivator;
 import com.st.rental.ui.RentalUIConstants;
 
