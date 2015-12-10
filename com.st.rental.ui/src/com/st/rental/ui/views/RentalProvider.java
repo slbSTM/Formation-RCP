@@ -119,12 +119,11 @@ public class RentalProvider extends LabelProvider implements ITreeContentProvide
 
 	@Override
 	public Color getForeground(Object element) {
-		Display display = Display.getCurrent();
 		IPreferenceStore store = RentalUIActivator.getDefault().getPreferenceStore();
 		Color color = null;
 
 		if (element instanceof RentalAgency) {
-			color = display.getSystemColor(SWT.COLOR_DARK_GRAY);
+			color = getColor(store.getString(PREF_COLOR_AGENCIES));
 		}
 		else if (element instanceof Node) {
 			color = ((Node) element).getForeround();
