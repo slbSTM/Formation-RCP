@@ -16,10 +16,10 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="com.st.rental.rcp.application"
-            name="Rental Application">
+            name="rental">
          <property
-               name="windowImages"
-               value="icons/alt_window_16.gif,icons/alt_window_32.gif">
+               name="appName"
+               value="rental">
          </property>
       </product>
    </extension>

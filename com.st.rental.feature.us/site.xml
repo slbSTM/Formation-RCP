@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.st.rental.feature_1.0.0.201512111448.jar" id="com.st.rental.feature" version="1.0.0.201512111448">
+      <category name="com.st.rental"/>
+   </feature>
+   <category-def name="com.st.rental" label="Rental"/>
+</site>
