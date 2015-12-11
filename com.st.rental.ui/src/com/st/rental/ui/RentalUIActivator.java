@@ -1,5 +1,10 @@
 package com.st.rental.ui;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -32,6 +37,23 @@ public class RentalUIActivator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		
+		readViewExtensions();
+	}
+
+	private void readViewExtensions() {
+		IExtensionRegistry registry = Platform.getExtensionRegistry();
+		
+		for (IConfigurationElement e : registry.getConfigurationElementsFor("org.eclipse.ui.views")) {
+			if (e.getName().equals("view")) {
+				System.out.print("Plugin : ");
+				System.out.print(e.getNamespaceIdentifier());
+				System.out.print("\t");
+				System.out.print("View : ");
+				System.out.print(e.getAttribute("name"));
+				System.out.println();
+			}
+		}
 	}
 
 	/*
