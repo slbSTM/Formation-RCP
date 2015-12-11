@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+   <extension
+         point="org.eclipse.rap.ui.entrypoint">
+      <entrypoint
+            applicationId="com.st.rental.rcp.application"
+            brandingId="com.st.rental.rcp.rap.branding"
+            id="com.st.rental.rcp.rap.entrypoint"
+            path="/rental">
+      </entrypoint>
+   </extension>
+   <extension
+         point="org.eclipse.rap.ui.branding">
+      <branding
+            id="com.st.rental.rcp.rap.branding"
+            themeId="org.eclipse.rap.design.example.fancy.theme">
+      </branding>
+   </extension>
+
+</fragment>
