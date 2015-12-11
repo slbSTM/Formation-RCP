@@ -8,7 +8,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
 import com.opcoach.training.rental.Customer;
-import com.opcoach.training.rental.Rental;
 
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.core.runtime.Platform;
@@ -45,6 +44,9 @@ public class CustomerView extends ViewPart implements ISelectionListener {
 
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+		if (selection.isEmpty())
+			return;
+
 		if (selection instanceof IStructuredSelection) {
 			Object selectedObject = ((IStructuredSelection) selection).getFirstElement();
 
