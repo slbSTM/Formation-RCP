@@ -1,12 +1,15 @@
 package com.st.rental.ui;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -22,6 +25,8 @@ public class RentalUIActivator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static RentalUIActivator plugin;
+	
+	private Map<String, Palette> paletteManager = new HashMap<String, Palette>();
 	
 	/**
 	 * The constructor
@@ -39,6 +44,7 @@ public class RentalUIActivator extends AbstractUIPlugin {
 		plugin = this;
 		
 		readViewExtensions();
+		readPaletteExtensions();
 	}
 
 	private void readViewExtensions() {
@@ -54,6 +60,35 @@ public class RentalUIActivator extends AbstractUIPlugin {
 				System.out.println();
 			}
 		}
+		System.out.println();
+	}
+
+	private void readPaletteExtensions() {
+		IExtensionRegistry registry = Platform.getExtensionRegistry();
+		
+		for (IConfigurationElement e : registry.getConfigurationElementsFor("com.st.rental.ui.palette")) {
+			if (e.getName().equals("palette")) {
+				try {
+					String key = e.getAttribute("id");
+					Palette palette = new Palette();
+					palette.setName(e.getAttribute("name"));
+					palette.setId(e.getAttribute("id"));
+					palette.setDescription(e.getAttribute("description"));
+					palette.setColorProvider((IColorProvider)e.createExecutableExtension("paletteClass"));
+
+					System.out.println("Add palette: " + e.getAttribute("name"));
+					paletteManager.put(key, palette);
+				} catch (CoreException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		}
+		System.out.println();
+	}
+
+	public Map<String, Palette> getPaletteManager() {
+		return paletteManager;
 	}
 
 	/*

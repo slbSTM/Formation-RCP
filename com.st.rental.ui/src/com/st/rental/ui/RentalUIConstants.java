@@ -15,4 +15,6 @@ public interface RentalUIConstants {
 	public static final String PREF_COLOR_CUSTOMERS = "PrefColorCustomers";
 	public static final String PREF_COLOR_RENTAL_OBJECTS = "PrefColorRentalObjects";
 	public static final String PREF_COLOR_RENTALS = "PrefColorRentals";
+	
+	public static final String PREF_PALETTE = "PrefPalette";
 }

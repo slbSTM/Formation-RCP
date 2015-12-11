@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="palette" name="Palette" schema="schema/palette.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <category
@@ -43,9 +44,15 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
+            category="com.st.rental.ui.preferencePages.palettes"
             class="com.st.rental.ui.prefs.RentalColorsPreferencePage"
             id="com.st.rental.ui.preferencePages.colors"
-            name="%page.name">
+            name="Default Palette">
+      </page>
+      <page
+            class="com.st.rental.ui.prefs.PalettesPreferencePage"
+            id="com.st.rental.ui.preferencePages.palettes"
+            name="Palettes">
       </page>
    </extension>
    <extension
@@ -114,6 +121,19 @@
                style="push">
          </command>
       </menuContribution>
+   </extension>
+   <extension
+         point="com.st.rental.ui.palette">
+      <palette
+            id="com.st.rental.ui.palette.default"
+            name="Default"
+            paletteClass="com.st.rental.ui.palette.DefaultPalette">
+      </palette>
+      <palette
+            id="com.st.rental.ui.palette.red"
+            name="ILoveRed"
+            paletteClass="com.st.rental.ui.palette.RedPalette">
+      </palette>
    </extension>
 
 </plugin>
